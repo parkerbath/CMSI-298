@@ -2,13 +2,17 @@ import React, {useState} from 'react'
 import {Form, Button, Card} from 'react-bootstrap'
 
 export default function PostForm(props){
-    const [checked, setChecked] = useState(true)
+    const {addPostToList} = props
+    const [checked, setChecked] = useState(false)
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log('on Submit: ', title)
+        addPostToList({ id: String(Math.random() * 1000 + 100), title, body})
+        setTitle('')
+        setBody('')
+        setChecked(false)
     }
 
     return (
